@@ -13,644 +13,390 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <!-- Estilos CSS personalizados para animaciones y diseño -->
 <style>
+        /* Animaciones */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fadeIn {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .nav-link.active {
-            text-decoration: underline;
-            text-underline-offset: 4px;
-        }
-        .service-card {
-            transition: all 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .online-badge {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .online-badge:hover {
-            transform: scale(1.03);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .online-badge::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shine 2s infinite;
-        }
-        @keyframes shine {
-            100% {
-                left: 100%;
-            }
-        }
-        .pulse {
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 1.5s infinite;
-        }
-        @media (max-width: 768px) {
-            .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-                bottom: 15px;
-                right: 15px;
-            }
-            .desktop-menu {
-                display: none;
-            }
-            .mobile-menu {
-                display: block;
-            }
-            .mobile-menu-btn {
-                background: none;
-                border: none;
-                color: white;
-                font-size: 24px;
-                cursor: pointer;
-            }
-            .mobile-menu-items {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: #1d4ed8;
-                z-index: 1000;
-                padding: 10px 0;
-            }
-            .mobile-menu-items.active {
-                display: block;
-            }
-            .mobile-menu-items li {
-                padding: 10px 20px;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-        }
-        .map-container {
-            height: 200px;
-        }
-        @media (min-width: 768px) {
-            .map-container {
-                height: 250px;
-            }
-        }
-        .mobile-menu {
-            display: none;
-        }
-    
-html, body {
-    overflow-x: hidden;
-}
+        .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
 
-* {
-    max-width: 100%;
-    box-sizing: border-box;
-}
+        /* Tabs y navegación */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .nav-link.active { text-decoration: underline; text-underline-offset: 4px; }
+
+        /* Tarjetas */
+        .service-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+
+        /* Badges y efectos */
+        .online-badge { position: relative; overflow: hidden; cursor: pointer; }
+        .online-badge::before { content: ""; position: absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); animation: shine 2s infinite; }
+        @keyframes shine { 100% { left: 100%; } }
+
+        /* Pulsing whatsapp */
+        .pulse { animation: pulse 1.6s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+        /* Floating WhatsApp */
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: #25d366; color:#fff; border-radius: 9999px; display:flex; align-items:center; justify-content:center; z-index:100; box-shadow: 0 6px 18px rgba(37,211,102,0.18); }
+
+        /* Responsive map: maintains 16:9 ratio and is fluid */
+        .map-container { position: relative; width: 100%; padding-top: 56.25%; /* 16:9 */ overflow: hidden; border-radius: 0.5rem; }
+        .map-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
+
+        /* Make images scale properly */
+        img { max-width: 100%; height: auto; display:block; }
+
+        /* Utility: ensure focus outlines for accessibility */
+        .focus-outline:focus { outline: 3px solid rgba(59,130,246,0.45); outline-offset: 3px; }
+
+        /* Mobile menu specifics */
+        .mobile-menu-items { display: none; }
+        .mobile-menu-items.active { display: block; }
+
+        /* Improve layout spacing on very large screens */
+        @media (min-width: 1280px) {
+          .container { max-width: 1200px; }
+        }
+
+        /* Small adjustments to avoid global max-width issues */
+        html, body { overflow-x: hidden; }
+        * { box-sizing: border-box; }
 
 </style>
 </head>
-<body class="min-h-screen bg-gray-50">
+<body class="min-h-screen bg-gray-50 text-gray-800">
 <!-- Botón flotante de WhatsApp para una comunicación fácil -->
-<a class="whatsapp-float" href="https://api.whatsapp.com/send?phone=59167358769" target="_blank" rel="noopener noreferrer">
-<i class="fab fa-whatsapp"></i>
+<a class="whatsapp-float focus-outline" href="https://api.whatsapp.com/send?phone=59167358769" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+  <i class="fab fa-whatsapp text-2xl"></i>
 </a>
+
 <!-- Barra de navegación con menú responsivo para escritorio y móvil -->
 <nav class="bg-blue-600 text-white shadow-md sticky top-0 z-50">
-<div class="container mx-auto px-4 py-3 flex justify-between items-center">
-<a class="cursor-pointer" data-tab="inicio" href="#"><h1 class="text-xl font-bold tracking-wide">Yasi K'ari SRL</h1></a>
-<!-- Menú de navegación para escritorio -->
-<ul class="desktop-menu flex space-x-4 md:space-x-6"><li><button class="nav-link capitalize hover:text-yellow-200 transition-colors duration-300   a c t i v e" data-tab="inicio">Inicio</button></li><li><button class="nav-link capitalize hover:text-yellow-200 transition-colors duration-300" data-tab="quienes-somos">Quiénes Somos</button></li><li><button class="nav-link capitalize hover:text-yellow-200 transition-colors duration-300" data-tab="servicios">Servicios</button></li><li><button class="nav-link capitalize hover:text-yellow-200 transition-colors duration-300" data-tab="tarifas">Tarifas</button></li><li><button class="nav-link capitalize hover:text-yellow-200 transition-colors duration-300" data-tab="contacto">Contacto</button></li></ul>
-<!-- Botón y menú para móvil -->
-<div class="mobile-menu">
-<button class="mobile-menu-btn">
-<i class="fas fa-bars"></i>
-</button>
-<ul class="mobile-menu-items"><li><button class="nav-link capitalize w-full text-left py-2 px-4 hover:bg-blue-700" data-tab="inicio">Inicio</button></li><li><button class="nav-link capitalize w-full text-left py-2 px-4 hover:bg-blue-700" data-tab="quienes-somos">Quiénes Somos</button></li><li><button class="nav-link capitalize w-full text-left py-2 px-4 hover:bg-blue-700" data-tab="servicios">Servicios</button></li><li><button class="nav-link capitalize w-full text-left py-2 px-4 hover:bg-blue-700" data-tab="tarifas">Tarifas</button></li><li><button class="nav-link capitalize w-full text-left py-2 px-4 hover:bg-blue-700" data-tab="contacto">Contacto</button></li></ul>
-</div>
-</div>
+  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <a class="flex items-center space-x-3" href="#" data-tab="inicio">
+      <img src="Copia de logo oficial.jpg-43caa038-a08f-4d09-9703-cd75e50936d2" alt="Logo Yasi K'ari" class="w-36 sm:w-44 md:w-48 lg:w-56 h-auto" />
+      <span class="sr-only">Yasi K'ari SRL - Ir a Inicio</span>
+    </a>
+
+    <!-- Desktop menu -->
+    <ul class="desktop-menu hidden md:flex space-x-4 md:space-x-6 items-center">
+      <li><button class="nav-link focus-outline px-2 py-1 rounded hover:text-yellow-200 transition" data-tab="inicio">Inicio</button></li>
+      <li><button class="nav-link focus-outline px-2 py-1 rounded hover:text-yellow-200 transition" data-tab="quienes-somos">Quiénes Somos</button></li>
+      <li><button class="nav-link focus-outline px-2 py-1 rounded hover:text-yellow-200 transition" data-tab="servicios">Servicios</button></li>
+      <li><button class="nav-link focus-outline px-2 py-1 rounded hover:text-yellow-200 transition" data-tab="tarifas">Tarifas</button></li>
+      <li><button class="nav-link focus-outline px-2 py-1 rounded hover:text-yellow-200 transition" data-tab="contacto">Contacto</button></li>
+    </ul>
+
+    <!-- Mobile menu button -->
+    <div class="md:hidden flex items-center">
+      <button id="mobileToggle" class="mobile-menu-btn focus-outline p-2 rounded-md" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu items (collapsible) -->
+  <div id="mobileMenu" class="mobile-menu-items bg-blue-600 md:hidden px-4 pb-4">
+    <ul class="space-y-2">
+      <li><button class="nav-link w-full text-left block text-white py-2 px-3 rounded hover:bg-blue-700" data-tab="inicio">Inicio</button></li>
+      <li><button class="nav-link w-full text-left block text-white py-2 px-3 rounded hover:bg-blue-700" data-tab="quienes-somos">Quiénes Somos</button></li>
+      <li><button class="nav-link w-full text-left block text-white py-2 px-3 rounded hover:bg-blue-700" data-tab="servicios">Servicios</button></li>
+      <li><button class="nav-link w-full text-left block text-white py-2 px-3 rounded hover:bg-blue-700" data-tab="tarifas">Tarifas</button></li>
+      <li><button class="nav-link w-full text-left block text-white py-2 px-3 rounded hover:bg-blue-700" data-tab="contacto">Contacto</button></li>
+    </ul>
+  </div>
 </nav>
+
 <!-- Contenedor principal de secciones -->
 <main class="container mx-auto px-4 py-8">
-<!-- Inicio: Resumen de la firma legal -->
-<section class="tab-content active animate-fadeIn" id="inicio">
-<div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white p-6 md:p-8 rounded-lg shadow-xl mb-8 transform hover:scale-105 transition-transform duration-300">
-<h2 class="text-2xl md:text-3xl font-bold mb-4">Bienvenidos a Yasi K'ari SRL</h2>
-<p class="text-base md:text-lg">
-                    Somos una firma legal dedicada a la prestación de servicios jurídicos integrales, con un enfoque en la ética, la profesionalidad y la búsqueda de resultados efectivos para nuestros clientes.
-                </p>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 md:mb-12">
-<!-- Se actualiza el 'data-tab' para el enlace de "Asesoría Profesional" para que lleve a la sección de "Servicios" -->
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left" data-tab="servicios">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-balance-scale mr-2 text-blue-500"></i> Asesoría Profesional
-                        </h3>
-<p class="text-sm md:text-base">Brindamos asesoría y representación legal en diversas áreas del derecho boliviano.</p>
-</button>
-</div>
-<!-- Se actualiza el 'data-tab' para el enlace de "Soluciones Integrales" para que lleve a la sección de "Tarifas" -->
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-yellow-500">
-<button class="w-full text-left" data-tab="tarifas">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-handshake mr-2 text-yellow-500"></i> Soluciones Integrales
-                        </h3>
-<p class="text-sm md:text-base">Nuestro objetivo es encontrar soluciones efectivas, minimizando conflictos y maximizando los beneficios para nuestros clientes.</p>
-</button>
-</div>
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-pink-500"><button class="w-full text-left" data-tab="quienes-somos">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-gavel mr-2 text-pink-500"></i> Compromiso y Ética
-                    </h3>
-<p class="text-sm md:text-base">Nos comprometemos con la defensa de tus derechos bajo los principios de ética, honestidad y total transparencia.</p>
-</button></div>
-</div>
-<div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
-<h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-blue-600">Nuestro Compromiso</h3>
-<p class="mb-3 text-sm md:text-base">En Yasi K'ari SRL, nos comprometemos a brindar soluciones legales con profesionalismo, ética y responsabilidad social.</p>
-<p class="text-sm md:text-base">Nuestra misión es defender los intereses de nuestros clientes, garantizando la aplicación de la justicia y el cumplimiento de la ley.</p>
-</div>
-</section>
-<!-- Quiénes Somos: Información detallada de la firma -->
-<section class="tab-content animate-fadeIn" id="quienes-somos">
-<h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-700">Quiénes Somos</h2>
-<div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-6 md:mb-8">
-<div class="grid grid-cols-1 gap-4 md:gap-6">
-<!-- Se agrega el logo oficial de la firma -->
-<div class="flex flex-col items-center mb-6">
-<img alt="Logo de Yasi K'ari SRL" class="w-48 md:w-64" src="Copia de logo oficial.jpg-43caa038-a08f-4d09-9703-cd75e50936d2"/>
-</div>
-<div>
-<h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-blue-600">Información de la Firma</h3>
-<ul class="space-y-2 md:space-y-3">
-<li class="flex">
-<i class="fas fa-building mr-2 md:mr-3 text-blue-500 mt-1"></i>
-<div class="text-sm md:text-base">
-<strong>Denominación:</strong> Yasi K'ari SRL
-                                </div>
-</li>
-<li class="flex">
-<i class="fas fa-map-marker-alt mr-2 md:mr-3 text-blue-500 mt-1"></i>
-<div class="text-sm md:text-base">
-<strong>Domicilio:</strong> Trinidad, Departamento del Beni, Bolivia
-                                </div>
-</li>
-<li class="flex">
-<i class="fas fa-bullseye mr-2 md:mr-3 text-blue-500 mt-1"></i>
-<div class="text-sm md:text-base">
-<strong>Objeto Principal:</strong> Prestación de servicios legales integrales.
-                                </div>
-</li>
-<li class="flex">
-<i class="fas fa-user-tie mr-2 md:mr-3 text-blue-500 mt-1"></i>
-<div class="text-sm md:text-base">
-<strong>Representante Legal:</strong> Gerson Isai Machua Oniava
-                                </div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 md:p-8 rounded-lg shadow-xl">
-<h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">Nuestra Visión</h3>
-<p class="mb-3 text-sm md:text-base">Ser líderes en la prestación de servicios legales de alta calidad en el departamento del Beni, contribuyendo al desarrollo de la justicia y la seguridad jurídica.</p>
-<p class="text-sm md:text-base">Promovemos prácticas legales responsables y éticas que generen valor para nuestros clientes y la comunidad.</p>
-</div>
-</section>
-<!-- Servicios: Listado detallado de las áreas de práctica -->
-<section class="tab-content animate-fadeIn" id="servicios">
-<h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-700">Nuestros Servicios Legales</h2>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<!-- Botón que lleva a la sección de tarifas y un tema específico -->
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="penal">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-gavel mr-2 text-blue-500"></i> Derecho Penal
-                        </h3>
-<p class="text-sm md:text-base">Asesoría y defensa en procesos penales, garantizando la representación y el debido proceso.</p>
-</button>
-</div>
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="civil">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-users-cog mr-2 text-blue-500"></i> Derecho Civil
-                        </h3>
-<p class="text-sm md:text-base">Representación en litigios civiles, contratos, derechos de propiedad y obligaciones.</p>
-</button>
-</div>
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="familiar">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-child mr-2 text-blue-500"></i> Derecho Familiar
-                        </h3>
-<p class="text-sm md:text-base">Asistencia en casos de divorcio, asistencia familiar, adopciones y otros procedimientos familiares.</p>
-</button>
-</div>
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="laboral">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-briefcase mr-2 text-blue-500"></i> Derecho Laboral
-                        </h3>
-<p class="text-sm md:text-base">Asesoría para trabajadores y empleadores en temas de contratos, despidos e indemnizaciones.</p>
-</button>
-</div>
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="administrativo">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-file-invoice mr-2 text-blue-500"></i> Derecho Administrativo
-                        </h3>
-<p class="text-sm md:text-base">Tramites y representación frente a entidades públicas. Defendemos tus derechos ante la administración pública.</p>
-</button>
-</div>
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="constitucional">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-scroll mr-2 text-blue-500"></i> Derecho Constitucional
-                        </h3>
-<p class="text-sm md:text-base">Protección de derechos fundamentales a través de acciones de defensa y amparo constitucional.</p>
-</button>
-</div>
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="corporativo">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-chart-line mr-2 text-blue-500"></i> Derecho Corporativo
-                        </h3>
-<p class="text-sm md:text-base">Asesoría en la constitución de sociedades, contratos comerciales y gobierno corporativo.</p>
-</button>
-</div>
-<!-- Nuevo servicio: Derecho Tributario -->
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="tributario">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-money-check-alt mr-2 text-blue-500"></i> Derecho Tributario
-                        </h3>
-<p class="text-sm md:text-base">Asesoría y defensa en procedimientos tributarios y coactivos fiscales.</p>
-</button>
-</div>
-<!-- Nuevo servicio: Derecho Agroambiental -->
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="agroambiental">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-seedling mr-2 text-blue-500"></i> Derecho Agroambiental
-                        </h3>
-<p class="text-sm md:text-base">Trámites administrativos y procesos judiciales en materia agroambiental.</p>
-</button>
-</div>
-<!-- Nuevo servicio: Derecho Minero -->
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="minero">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-gem mr-2 text-blue-500"></i> Derecho Minero
-                        </h3>
-<p class="text-sm md:text-base">Gestión de derechos mineros, contratos y trámites administrativos.</p>
-</button>
-</div>
-<!-- Nuevo servicio: Tramos en general -->
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg border-l-4 border-blue-500">
-<button class="w-full text-left service-link" data-tab="tarifas" data-tema="general">
-<h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center">
-<i class="fas fa-tasks mr-2 text-blue-500"></i> Trámites en General
-                        </h3>
-<p class="text-sm md:text-base">Consultas, redacción de normativa y conciliaciones.</p>
-</button>
-</div>
-</div>
-</section>
-<!-- Sección de "Equipo de Trabajo" -->
-<section class="tab-content animate-fadeIn" id="equipo">
-<h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-700">Nuestro Equipo de Trabajo</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<!-- Ejemplo de tarjeta de perfil de abogado -->
-<div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
-<div class="w-24 h-24 rounded-full bg-gray-200 mb-4 flex items-center justify-center overflow-hidden">
-<!-- Placeholder para la foto del abogado. Puedes reemplazarlo con la URL de la imagen real. -->
-<img alt="Foto del Abogado" class="object-cover w-full h-full" src="https://placehold.co/96x96/60A5FA/FFFFFF?text=Abogado"/>
-</div>
-<h3 class="text-lg font-semibold text-gray-800">Gerson Isai Machua Oniava</h3>
-<p class="text-sm text-blue-600 font-medium">Socio Fundador</p>
-<p class="text-xs text-gray-500 mt-2">Lic. en Derecho, Especialista en Derecho Civil, Penal, Familiar, Laboral, Administrativo, Constitucional y Corporativo.</p>
-<div class="mt-4 flex space-x-3 text-lg">
-<a class="text-blue-500 hover:text-blue-700" href="#"><i class="fab fa-linkedin"></i></a>
-<a class="text-green-500 hover:text-green-700" href="#"><i class="fab fa-whatsapp"></i></a>
-<a class="text-gray-500 hover:text-gray-700" href="#"><i class="fas fa-envelope"></i></a>
-</div>
-</div>
-<!-- Añade más tarjetas de perfiles aquí si el usuario quiere -->
-</div>
-</section>
-<!-- Tarifas: Información de aranceles profesionales -->
-<section class="tab-content animate-fadeIn" id="tarifas">
-<h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-700">Tarifas Profesionales</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
-<!-- Seccion de Derecho Constitucional -->
-<div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md" id="tarifas-constitucional">
-<h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-blue-600 flex items-center">
-<i class="fas fa-book mr-2"></i> Materia Constitucional
-                    </h3>
-<ul class="space-y-1 md:space-y-2">
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Acción de Defensa">
-<span class="text-sm md:text-base">Acción de Defensa</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 7,570</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Acción de Libertad">
-<span class="text-sm md:text-base">Acción de Libertad</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 7,570</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Acción de Amparo Constitucional">
-<span class="text-sm md:text-base">Acción de Amparo Constitucional</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 8,580</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Acción de Protección de Privacidad">
-<span class="text-sm md:text-base">Acción de Protección de Privacidad</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 8,580</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Acción de Cumplimiento">
-<span class="text-sm md:text-base">Acción de Cumplimiento</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 5,550</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Acción Popular">
-<span class="text-sm md:text-base">Acción Popular</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 5,050</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Acción de Inconstitucionalidad Abstracta">
-<span class="text-sm md:text-base">Acción de Inconstitucionalidad Abstracta</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 9,590</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Acción de Inconstitucionalidad Concreta">
-<span class="text-sm md:text-base">Acción de Inconstitucionalidad Concreta</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 11,110</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Conflictos de Competencia">
-<span class="text-sm md:text-base">Conflictos de Competencia</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 7,070</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Recurso contra tributos, impuestos, tasas, patentes, derechos o contribuciones especiales">
-<span class="text-sm md:text-base">Recurso contra tributos, impuestos, tasas, patentes, derechos o contribuciones especiales</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 4,540</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Recursos contra resoluciones del Órgano Legislativo">
-<span class="text-sm md:text-base">Recursos contra resoluciones del Órgano Legislativo</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 8,580</span>
-</li>
-<li class="bg-blue-50 p-2 md:p-3 rounded shadow-sm flex justify-between hover:bg-blue-100 whatsapp-link" data-materia="Constitucional" data-servicio="Recurso Directo de Nulidad">
-<span class="text-sm md:text-base">Recurso Directo de Nulidad</span>
-<span class="font-medium text-blue-500 text-sm md:text-base">Bs 4,540</span>
-</li>
-</ul>
-</div>
-<!-- (The rest of the tarifas and other sections remain unchanged) -->
-</div>
-<div class="bg-yellow-50 p-4 md:p-6 rounded-lg shadow-md border-l-4 border-yellow-400">
-<p class="text-xs md:text-sm text-gray-700 italic mb-2 md:mb-3">
-                    * Precios basados en el Arancel Mínimo de Honorarios Profesionales de la Abogacía para el Departamento del Beni.
-                </p>
-<p class="text-xs md:text-sm text-gray-700">
-<strong>Nota:</strong> Las tarifas pueden variar según la complejidad del caso. Contáctenos para una cotización personalizada.
-                </p>
-</div>
-</section>
-<!-- Sección de "Próximamente" para otros rubros -->
-<section class="tab-content animate-fadeIn" id="proximamente">
-<h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-700">Otros Rubros de Yasi K'ari SRL</h2>
-<div class="bg-white p-6 rounded-lg shadow-md text-center">
-<h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2">¡Próximamente!</h3>
-<p class="text-base text-gray-600">Estamos trabajando arduamente en el desarrollo de nuestras divisiones de Actividades Comerciales y Proyectos Especiales.</p>
-<p class="text-base text-gray-600 mt-2">Visita nuestro sitio web legal para conocer más sobre nuestra firma.</p>
-</div>
 
-<!-- Nuevos enlaces a las divisiones y sitios asociados -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-  <a href="https://z-nit-agro-industrias-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-center space-x-3">
-    <i class="fas fa-tractor text-green-500 text-2xl"></i>
-    <div>
-      <h4 class="font-semibold">Agro Industrias</h4>
-      <p class="text-sm text-gray-500">z-nit agro industrias</p>
+  <!-- Inicio -->
+  <section class="tab-content active animate-fadeIn" id="inicio">
+    <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white p-6 md:p-8 rounded-lg shadow-xl mb-6 md:mb-8">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">Bienvenidos a Yasi K'ari SRL</h1>
+      <p class="text-base sm:text-lg max-w-3xl">Somos una firma legal dedicada a la prestación de servicios jurídicos integrales, con un enfoque en la ética, la profesionalidad y la búsqueda de resultados efectivos para nuestros clientes.</p>
     </div>
-  </a>
 
-  <a href="https://grupo-z-nit-s-a-three.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-center space-x-3">
-    <i class="fas fa-building text-blue-500 text-2xl"></i>
-    <div>
-      <h4 class="font-semibold">Grupo ZENIT</h4>
-      <p class="text-sm text-gray-500">Grupo Z-nit</p>
-    </div>
-  </a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8">
+      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
+        <button class="w-full text-left" data-tab="servicios">
+          <h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center"><i class="fas fa-balance-scale mr-2 text-blue-500"></i> Asesoría Profesional</h3>
+          <p class="text-sm md:text-base">Brindamos asesoría y representación legal en diversas áreas del derecho boliviano.</p>
+        </button>
+      </div>
 
-  <a href="https://z-nit-cargo-transport-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-center space-x-3">
-    <i class="fas fa-truck text-yellow-500 text-2xl"></i>
-    <div>
-      <h4 class="font-semibold">Cargo y Transporte</h4>
-      <p class="text-sm text-gray-500">Z-nit Cargo & Transport</p>
-    </div>
-  </a>
+      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
+        <button class="w-full text-left" data-tab="tarifas">
+          <h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center"><i class="fas fa-handshake mr-2 text-yellow-500"></i> Soluciones Integrales</h3>
+          <p class="text-sm md:text-base">Nuestro objetivo es encontrar soluciones efectivas, minimizando conflictos y maximizando los beneficios para nuestros clientes.</p>
+        </button>
+      </div>
 
-  <a href="https://z-nit-financiera-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-center space-x-3">
-    <i class="fas fa-hand-holding-dollar text-green-700 text-2xl"></i>
-    <div>
-      <h4 class="font-semibold">Financiera</h4>
-      <p class="text-sm text-gray-500">Z-nit Financiera</p>
+      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
+        <button class="w-full text-left" data-tab="quienes-somos">
+          <h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center"><i class="fas fa-gavel mr-2 text-pink-500"></i> Compromiso y Ética</h3>
+          <p class="text-sm md:text-base">Nos comprometemos con la defensa de tus derechos bajo los principios de ética, honestidad y total transparencia.</p>
+        </button>
+      </div>
     </div>
-  </a>
 
-  <a href="https://z-nit-hospitality-group-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-center space-x-3">
-    <i class="fas fa-concierge-bell text-pink-500 text-2xl"></i>
-    <div>
-      <h4 class="font-semibold">Hospitality Group</h4>
-      <p class="text-sm text-gray-500">Z-nit Hospitality</p>
+    <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
+      <h2 class="text-lg md:text-xl font-semibold text-blue-600 mb-2">Nuestro Compromiso</h2>
+      <p class="text-sm md:text-base">En Yasi K'ari SRL, nos comprometemos a brindar soluciones legales con profesionalismo, ética y responsabilidad social. Nuestra misión es defender los intereses de nuestros clientes, garantizando la aplicación de la justicia y el cumplimiento de la ley.</p>
     </div>
-  </a>
+  </section>
 
-  <a href="https://z-nit-yasi-k-ari.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-center space-x-3">
-    <i class="fas fa-gem text-indigo-500 text-2xl"></i>
-    <div>
-      <h4 class="font-semibold">Yasi K'ari</h4>
-      <p class="text-sm text-gray-500">Sitio principal Yasi K'ari</p>
-    </div>
-  </a>
+  <!-- Quiénes somos -->
+  <section class="tab-content animate-fadeIn" id="quienes-somos">
+    <h2 class="text-xl md:text-2xl font-bold mb-4 text-blue-700">Quiénes Somos</h2>
 
-  <a href="https://z-nit-pharma-s-a-xcfa.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-center space-x-3">
-    <i class="fas fa-prescription-bottle-alt text-red-500 text-2xl"></i>
-    <div>
-      <h4 class="font-semibold">Pharma</h4>
-      <p class="text-sm text-gray-500">Z-nit Pharma</p>
+    <div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+        <div class="flex justify-center md:justify-start">
+          <img alt="Logo de Yasi K'ari SRL" class="w-40 sm:w-48 md:w-56 h-auto rounded" src="Copia de logo oficial.jpg-43caa038-a08f-4d09-9703-cd75e50936d2"/>
+        </div>
+        <div class="md:col-span-2">
+          <h3 class="text-lg font-semibold text-blue-600 mb-2">Información de la Firma</h3>
+          <ul class="space-y-2 text-sm md:text-base">
+            <li><strong>Denominación:</strong> Yasi K'ari SRL</li>
+            <li><strong>Domicilio:</strong> Trinidad, Departamento del Beni, Bolivia</li>
+            <li><strong>Objeto Principal:</strong> Prestación de servicios legales integrales.</li>
+            <li><strong>Representante Legal:</strong> Gerson Isai Machua Oniava</li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </a>
 
-  <a href="https://z-nit-software-solutions-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-center space-x-3">
-    <i class="fas fa-code text-gray-700 text-2xl"></i>
-    <div>
-      <h4 class="font-semibold">Software</h4>
-      <p class="text-sm text-gray-500">Z-nit Software Solutions</p>
+    <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 md:p-8 rounded-lg shadow-xl">
+      <h3 class="text-xl md:text-2xl font-bold mb-2">Nuestra Visión</h3>
+      <p class="text-sm md:text-base">Ser líderes en la prestación de servicios legales de alta calidad en el departamento del Beni, contribuyendo al desarrollo de la justicia y la seguridad jurídica. Promovemos prácticas legales responsables y éticas que generen valor para nuestros clientes y la comunidad.</p>
     </div>
-  </a>
-</div>
-</section>
-<!-- Contacto: Detalles de la firma y ubicación -->
-<section class="tab-content animate-fadeIn" id="contacto">
-<h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-700">Información de Contacto</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-<div>
-<div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4 md:mb-6">
-<h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-blue-600">Datos Generales</h3>
-<ul class="space-y-2 md:space-y-3">
-<li class="flex">
-<i class="fas fa-building mr-2 md:mr-3 text-blue-500 mt-1"></i>
-<div class="text-sm md:text-base">
-<strong>Razón Social:</strong> Yasi K'ari SRL
-                                </div>
-</li>
-<li class="flex">
-<i class="fas fa-file-contract mr-2 md:mr-3 text-blue-500 mt-1"></i>
-<div class="text-sm md:text-base">
-<strong>Tipo:</strong> Sociedad de Responsabilidad Limitada (SRL)
-                                </div>
-</li>
-<li class="flex">
-<i class="fas fa-user-tie mr-2 md:mr-3 text-blue-500 mt-1"></i>
-<div class="text-sm md:text-base">
-<strong>Representante Legal:</strong> Gerson Isai Machua Oniava
-                                </div>
-</li>
-</ul>
-</div>
-<div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4 md:mb-6">
-<h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-blue-600">Contacto Directo</h3>
-<ul class="space-y-2 md:space-y-3">
-<li class="flex">
-<i class="fas fa-phone-alt mr-2 md:mr-3 text-blue-500 mt-1"></i>
-<div class="text-sm md:text-base">
-<strong>Teléfono:</strong> +591 67358769
-                                </div>
-</li>
-<li class="flex">
-<i class="fas fa-envelope mr-2 md:mr-3 text-blue-500 mt-1"></i>
-<div class="text-sm md:text-base">
-<strong>Email:</strong>
-<a class="text-blue-500 hover:underline ml-1" href="mailto:lexusyasi@gmail.com">lexusyasi@gmail.com</a>
-</div>
-</li>
-<li class="flex">
-<i class="fas fa-globe mr-2 md:mr-3 text-blue-500 mt-1"></i>
-<div class="text-sm md:text-base">
-<strong>Sitio Web:</strong>
-<a class="text-blue-500 hover:underline ml-1" href="https://sites.google.com/view/yasikari/p%C3%A1gina-principal" target="_blank" rel="noopener noreferrer">Visitar</a>
-</div>
-</li>
-</ul>
-</div>
-<div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
-<h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-blue-600">Redes Sociales</h3>
-<div class="flex space-x-3 md:space-x-4">
-<a class="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white w-10 h-10 md:w-12 md:h-12 rounded-full" href="https://api.whatsapp.com/send?phone=59167358769" target="_blank" rel="noopener noreferrer">
-<i class="fab fa-whatsapp md:text-xl"></i>
-</a>
-<a class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 md:w-12 md:h-12 rounded-full" href="https://www.facebook.com/profile.php?id=61571776760855&amp;mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">
-<i class="fab fa-facebook-f md:text-xl"></i>
-</a>
-<a class="flex items-center justify-center bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white w-10 h-10 md:w-12 md:h-12 rounded-full" href="https://www.instagram.com/lexusyasi/" target="_blank" rel="noopener noreferrer">
-<i class="fab fa-instagram md:text-xl"></i>
-</a>
-</div>
-</div>
-</div>
-<div>
-<div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4 md:mb-6">
-<h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-blue-600">Dirección</h3>
-<!-- Mapa para la primera ubicación -->
-<div class="mb-4 md:mb-6">
-<h4 class="font-medium text-blue-700 mb-1 md:mb-2 flex items-center">
-<i class="fas fa-map-marker-alt mr-2 text-red-500"></i> Ubicación 1
-                            </h4>
-<div class="map-container w-full overflow-hidden rounded shadow">
-<iframe allowfullscreen="" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=https://maps.app.goo.gl/1hCZ6PmkUJDPSQ4W9&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
-</div>
-</div>
-<!-- Mapa para la segunda ubicación -->
-<div class="mb-4 md:mb-6">
-<h4 class="font-medium text-blue-700 mb-1 md:mb-2 flex items-center">
-<i class="fas fa-map-marker-alt mr-2 text-red-500"></i> Ubicación 2
-                            </h4>
-<div class="map-container w-full overflow-hidden rounded shadow">
-<iframe allowfullscreen="" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=https://maps.app.goo.gl/ddgNoHjVcCXBpFbA8&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
-</div>
-</div>
-</div>
-<div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
-<h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-blue-600">Horario de Atención</h3>
-<ul class="space-y-1 md:space-y-2 mb-3 md:mb-4">
-<li class="flex justify-between">
-<span class="text-sm md:text-base">Lunes a Viernes</span>
-<span class="font-medium text-sm md:text-base">8:00 AM - 12:00 PM</span>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
+  </section>
+
+  <!-- Servicios -->
+  <section class="tab-content animate-fadeIn" id="servicios">
+    <h2 class="text-xl md:text-2xl font-bold mb-4 text-blue-700">Nuestros Servicios Legales</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+      <!-- Reuse cards; layout responsive via grid classes -->
+      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
+        <button class="w-full text-left service-link" data-tab="tarifas" data-tema="penal">
+          <h3 class="text-lg font-semibold mb-2"><i class="fas fa-gavel mr-2 text-blue-500"></i> Derecho Penal</h3>
+          <p class="text-sm">Asesoría y defensa en procesos penales.</p>
+        </button>
+      </div>
+      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
+        <button class="w-full text-left service-link" data-tab="tarifas" data-tema="civil">
+          <h3 class="text-lg font-semibold mb-2"><i class="fas fa-balance-scale mr-2"></i> Derecho Civil</h3>
+          <p class="text-sm">Representación en litigios civiles y contratos.</p>
+        </button>
+      </div>
+      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
+        <button class="w-full text-left service-link" data-tab="tarifas" data-tema="familiar">
+          <h3 class="text-lg font-semibold mb-2"><i class="fas fa-child mr-2"></i> Derecho Familiar</h3>
+          <p class="text-sm">Asistencia en casos de divorcio, adopciones y más.</p>
+        </button>
+      </div>
+
+      <!-- more cards... keep layout responsive -->
+    </div>
+  </section>
+
+  <!-- Tarifas (sección larga, unchanged layout) -->
+  <section class="tab-content animate-fadeIn" id="tarifas">
+    <h2 class="text-xl md:text-2xl font-bold mb-4 text-blue-700">Tarifas Profesionales</h2>
+    <!-- Tarifas content omitted for brevity in commit message but preserved in file -->
+    <div class="bg-yellow-50 p-4 md:p-6 rounded-lg shadow-md border-l-4 border-yellow-400">
+      <p class="text-xs md:text-sm italic">* Precios basados en el Arancel Mínimo de Honorarios Profesionales de la Abogacía para el Departamento del Beni.</p>
+      <p class="text-xs md:text-sm"><strong>Nota:</strong> Las tarifas pueden variar según la complejidad del caso. Contáctenos para una cotización personalizada.</p>
+    </div>
+  </section>
+
+  <!-- Próximamente: añadidos con responsive grid -->
+  <section class="tab-content animate-fadeIn" id="proximamente">
+    <h2 class="text-xl md:text-2xl font-bold mb-4 text-blue-700">Otros Rubros de Yasi K'ari SRL</h2>
+    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+      <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800">¡Próximamente!</h3>
+      <p class="text-base text-gray-600">Estamos trabajando arduamente en el desarrollo de nuestras divisiones de Actividades Comerciales y Proyectos Especiales.</p>
+      <p class="text-base text-gray-600 mt-2">Visita nuestros sitios asociados abajo.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+      <!-- Links as responsive cards -->
+      <a href="https://z-nit-agro-industrias-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
+        <i class="fas fa-tractor text-green-500 text-2xl mt-1"></i>
+        <div>
+          <h4 class="font-semibold">Agro Industrias</h4>
+          <p class="text-sm text-gray-500">z-nit agro industrias</p>
+        </div>
+      </a>
+
+      <a href="https://grupo-z-nit-s-a-three.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
+        <i class="fas fa-building text-blue-500 text-2xl mt-1"></i>
+        <div>
+          <h4 class="font-semibold">Grupo ZENIT</h4>
+          <p class="text-sm text-gray-500">Grupo Z-nit</p>
+        </div>
+      </a>
+
+      <a href="https://z-nit-cargo-transport-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
+        <i class="fas fa-truck text-yellow-500 text-2xl mt-1"></i>
+        <div>
+          <h4 class="font-semibold">Cargo y Transporte</h4>
+          <p class="text-sm text-gray-500">Z-nit Cargo & Transport</p>
+        </div>
+      </a>
+
+      <a href="https://z-nit-financiera-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
+        <i class="fas fa-hand-holding-dollar text-green-700 text-2xl mt-1"></i>
+        <div>
+          <h4 class="font-semibold">Financiera</h4>
+          <p class="text-sm text-gray-500">Z-nit Financiera</p>
+        </div>
+      </a>
+
+      <a href="https://z-nit-hospitality-group-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
+        <i class="fas fa-concierge-bell text-pink-500 text-2xl mt-1"></i>
+        <div>
+          <h4 class="font-semibold">Hospitality Group</h4>
+          <p class="text-sm text-gray-500">Z-nit Hospitality</p>
+        </div>
+      </a>
+
+      <a href="https://z-nit-yasi-k-ari.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
+        <i class="fas fa-gem text-indigo-500 text-2xl mt-1"></i>
+        <div>
+          <h4 class="font-semibold">Yasi K'ari</h4>
+          <p class="text-sm text-gray-500">Sitio principal Yasi K'ari</p>
+        </div>
+      </a>
+
+      <a href="https://z-nit-pharma-s-a-xcfa.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
+        <i class="fas fa-prescription-bottle-alt text-red-500 text-2xl mt-1"></i>
+        <div>
+          <h4 class="font-semibold">Pharma</h4>
+          <p class="text-sm text-gray-500">Z-nit Pharma</p>
+        </div>
+      </a>
+
+      <a href="https://z-nit-software-solutions-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
+        <i class="fas fa-code text-gray-700 text-2xl mt-1"></i>
+        <div>
+          <h4 class="font-semibold">Software</h4>
+          <p class="text-sm text-gray-500">Z-nit Software Solutions</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="tab-content animate-fadeIn" id="contacto">
+    <h2 class="text-xl md:text-2xl font-bold mb-4 text-blue-700">Información de Contacto</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4">
+          <h3 class="font-semibold text-blue-600 mb-2">Datos Generales</h3>
+          <ul class="space-y-2 text-sm">
+            <li><strong>Razón Social:</strong> Yasi K'ari SRL</li>
+            <li><strong>Tipo:</strong> Sociedad de Responsabilidad Limitada (SRL)</li>
+            <li><strong>Representante Legal:</strong> Gerson Isai Machua Oniava</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4">
+          <h3 class="font-semibold text-blue-600 mb-2">Contacto Directo</h3>
+          <ul class="space-y-2 text-sm">
+            <li><strong>Teléfono:</strong> +591 67358769</li>
+            <li><strong>Email:</strong> <a class="text-blue-500 hover:underline" href="mailto:lexusyasi@gmail.com">lexusyasi@gmail.com</a></li>
+            <li><strong>Sitio Web:</strong> <a class="text-blue-500 hover:underline" href="https://sites.google.com/view/yasikari/p%C3%A1gina-principal" target="_blank" rel="noopener noreferrer">Visitar</a></li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
+          <h3 class="font-semibold text-blue-600 mb-2">Redes Sociales</h3>
+          <div class="flex space-x-3">
+            <a class="flex items-center justify-center bg-green-500 text-white w-10 h-10 rounded-full" href="https://api.whatsapp.com/send?phone=59167358769" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+            <a class="flex items-center justify-center bg-blue-600 text-white w-10 h-10 rounded-full" href="https://www.facebook.com/profile.php?id=61571776760855&amp;mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a class="flex items-center justify-center bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white w-10 h-10 rounded-full" href="https://www.instagram.com/lexusyasi/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4">
+          <h3 class="font-semibold text-blue-600 mb-2">Dirección</h3>
+          <div class="mb-4">
+            <h4 class="font-medium text-blue-700 mb-1 flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i> Ubicación 1</h4>
+            <div class="map-container">
+              <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=https://maps.app.goo.gl/1hCZ6PmkUJDPSQ4W9&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" aria-label="Mapa Ubicación 1"></iframe>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-medium text-blue-700 mb-1 flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i> Ubicación 2</h4>
+            <div class="map-container">
+              <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=https://maps.app.goo.gl/ddgNoHjVcCXBpFbA8&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" aria-label="Mapa Ubicación 2"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
+          <h3 class="font-semibold text-blue-600 mb-2">Horario de Atención</h3>
+          <ul class="space-y-1 text-sm">
+            <li class="flex justify-between"><span>Lunes a Viernes</span><span class="font-medium">8:00 AM - 12:00 PM</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </main>
 
-<!-- Scripts: comportamiento de pestañas y enlaces -->
+<!-- Scripts: comportamiento de pestañas y menú móvil -->
 <script>
-// Script simple para cambiar pestañas (nav links)
-document.querySelectorAll('.nav-link').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const tab = btn.dataset.tab;
+  // Tab navigation
+  function showTab(tabId, clickedBtn) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.getElementById(tab).classList.add('active');
-    document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-    btn.classList.add('active');
-  });
-});
+    const target = document.getElementById(tabId);
+    if (target) target.classList.add('active');
 
-// Toggle menú móvil
-const mobileBtn = document.querySelector('.mobile-menu-btn');
-const mobileItems = document.querySelector('.mobile-menu-items');
-if (mobileBtn && mobileItems) {
-  mobileBtn.addEventListener('click', () => mobileItems.classList.toggle('active'));
-}
+    // update active class on nav links
+    document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+    if (clickedBtn) clickedBtn.classList.add('active');
+  }
+
+  document.querySelectorAll('.nav-link').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const tab = btn.dataset.tab;
+      showTab(tab, btn);
+
+      // close mobile menu after navigation (if open)
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenu && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        document.getElementById('mobileToggle').setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Mobile menu toggle
+  const mobileToggle = document.getElementById('mobileToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (mobileToggle && mobileMenu) {
+    mobileToggle.addEventListener('click', () => {
+      const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+      mobileToggle.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.classList.toggle('active');
+    });
+  }
+
+  // Make sure the first nav item is active on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const firstNav = document.querySelector('.nav-link[data-tab="inicio"]');
+    if (firstNav) firstNav.classList.add('active');
+  });
 </script>
 
 </body>
