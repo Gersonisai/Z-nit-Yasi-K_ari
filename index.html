@@ -1,403 +1,969 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- Título y metadatos enfocados en la división legal -->
-<title>Yasi K'ari SRL | Firma de Abogados en Bolivia</title>
-<meta content="Servicios legales integrales en Bolivia. Yasi K'ari SRL es una firma legal especializada en derecho Penal, Civil, Familiar, Laboral, Administrativo, Constitucional y Corporativo." name="description"/>
-<!-- Carga de Tailwind CSS para un diseño moderno y responsive -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- Carga de Font Awesome para los iconos -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<!-- Estilos CSS personalizados para animaciones y diseño -->
-<style>
-        /* Animaciones */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasi K'ari | Servicios Legales en Santa Cruz, Bolivia</title>
+    <meta name="description" content="Servicios legales especializados en Santa Cruz. Penal, Civil, Familiar, Laboral, Corporativo. Contacto directo por WhatsApp.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    
+    <style>
+        :root {
+            --primary-dark: #0a1628;
+            --primary-navy: #1a2942;
+            --accent-gold: #c9a961;
+            --accent-gold-light: #e4d4a8;
+            --accent-silver: #71717a;
+            --accent-silver-light: #a1a1aa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a5568;
+            --bg-white: #ffffff;
+            --bg-light: #f8f9fa;
+            --border-subtle: #e2e8f0;
+            --font-display: 'Crimson Pro', serif;
+            --font-body: 'Work Sans', sans-serif;
         }
-        .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
-
-        /* Tabs y navegación */
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .nav-link.active { text-decoration: underline; text-underline-offset: 4px; }
-
-        /* Tarjetas */
-        .service-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
-        .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
-
-        /* Badges y efectos */
-        .online-badge { position: relative; overflow: hidden; cursor: pointer; }
-        .online-badge::before { content: ""; position: absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); animation: shine 2s infinite; }
-        @keyframes shine { 100% { left: 100%; } }
-
-        /* Pulsing whatsapp */
-        .pulse { animation: pulse 1.6s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
-
-        /* Floating WhatsApp */
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: #25d366; color:#fff; border-radius: 9999px; display:flex; align-items:center; justify-content:center; z-index:100; box-shadow: 0 6px 18px rgba(37,211,102,0.18); }
-
-        /* Responsive map: maintains 16:9 ratio and is fluid */
-        .map-container { position: relative; width: 100%; padding-top: 56.25%; /* 16:9 */ overflow: hidden; border-radius: 0.5rem; }
-        .map-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
-
-        /* Make images scale properly */
-        img { max-width: 100%; height: auto; display:block; }
-
-        /* Utility: ensure focus outlines for accessibility */
-        .focus-outline:focus { outline: 3px solid rgba(59,130,246,0.45); outline-offset: 3px; }
-
-        /* Mobile menu specifics */
-        .mobile-menu-items { display: none; }
-        .mobile-menu-items.active { display: block; }
-
-        /* Improve layout spacing on very large screens */
-        @media (min-width: 1280px) {
-          .container { max-width: 1200px; }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            background: var(--bg-white);
         }
-
-        /* Small adjustments to avoid global max-width issues */
-        html, body { overflow-x: hidden; }
-        * { box-sizing: border-box; }
-
-</style>
+        
+        /* Header Simplificado */
+        header {
+            background: var(--bg-white);
+            border-bottom: 2px solid var(--border-subtle);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+        
+        .logo-accent { color: var(--accent-silver); }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover { color: var(--accent-gold); }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            width: 65px;
+            height: 65px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1001;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        
+        /* Hero Compacto */
+        .hero {
+            background: linear-gradient(135deg, var(--accent-silver) 0%, var(--accent-silver-light) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-contact {
+            font-size: 1rem;
+            color: var(--accent-gold-light);
+            margin-top: 0.5rem;
+        }
+        
+        /* Sección de Servicios - PROTAGONISTA */
+        .servicios-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .section-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Grid de Materias */
+        .materias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .materia-card {
+            background: var(--bg-white);
+            border: 2px solid var(--border-subtle);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .materia-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-gold);
+        }
+        
+        .materia-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-navy));
+            color: white;
+            padding: 2rem;
+        }
+        
+        .materia-title {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .materia-title i {
+            font-size: 2rem;
+            color: var(--accent-gold);
+        }
+        
+        .materia-count {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .materia-body {
+            padding: 1.5rem;
+        }
+        
+        /* Items de Servicio */
+        .servicio-item {
+            background: var(--bg-light);
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+        
+        .servicio-item:hover {
+            background: var(--bg-white);
+            border-left-color: var(--accent-gold);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateX(5px);
+        }
+        
+        .servicio-nombre {
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 1;
+        }
+        
+        .servicio-precio {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-silver);
+            white-space: nowrap;
+            margin: 0 0.75rem;
+        }
+        
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* Info Bar */
+        .info-bar {
+            background: var(--bg-light);
+            padding: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+            border-radius: 8px;
+        }
+        
+        .info-bar p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-bar strong {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+        
+        /* Contacto Section */
+        .contacto-section {
+            background: var(--primary-navy);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .contacto-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contacto-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contacto-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .contacto-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .contacto-item i {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contacto-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 2rem 1.5rem;
+        }
+        
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--bg-white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover { color: var(--accent-gold); }
+        
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-social a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-social a:hover { color: var(--accent-gold); }
+        
+        /* Términos (Ocultos) */
+        .terminos-link {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        
+        .terminos-link:hover { color: rgba(255, 255, 255, 0.6); }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .modal.active { display: block; }
+        
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 3rem;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+        
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .modal-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .materias-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .servicio-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .servicio-precio {
+                margin: 0.5rem 0;
+            }
+            
+            .whatsapp-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-gray-50 text-gray-800">
-<!-- Botón flotante de WhatsApp para una comunicación fácil -->
-<a class="whatsapp-float focus-outline" href="https://api.whatsapp.com/send?phone=59167358769" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-  <i class="fab fa-whatsapp text-2xl"></i>
-</a>
-
-<!-- Barra de navegación con menú responsivo para escritorio y móvil -->
-<nav class="bg-blue-600 text-white shadow-md sticky top-0 z-50">
-  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-    <a class="flex items-center space-x-3" href="#" data-tab="inicio">
-      <img src="Copia de logo oficial.jpg-43caa038-a08f-4d09-9703-cd75e50936d2" alt="Logo Yasi K'ari" class="w-36 sm:w-44 md:w-48 lg:w-56 h-auto" />
-      <span class="sr-only">Yasi K'ari SRL - Ir a Inicio</span>
+<body>
+    <!-- WhatsApp Float -->
+    <a href="https://api.whatsapp.com/send?phone=59167358769&text=Hola,%20necesito%20información%20sobre%20servicios%20legales" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Desktop menu -->
-    <ul class="desktop-menu hidden md:flex space-x-4 md:space-x-6 items-center">
-      <li><button class="nav-link focus-outline px-2 py-1 rounded hover:text-yellow-200 transition" data-tab="inicio">Inicio</button></li>
-      <li><button class="nav-link focus-outline px-2 py-1 rounded hover:text-yellow-200 transition" data-tab="quienes-somos">Quiénes Somos</button></li>
-      <li><button class="nav-link focus-outline px-2 py-1 rounded hover:text-yellow-200 transition" data-tab="servicios">Servicios</button></li>
-      <li><button class="nav-link focus-outline px-2 py-1 rounded hover:text-yellow-200 transition" data-tab="tarifas">Tarifas</button></li>
-      <li><button class="nav-link focus-outline px-2 py-1 rounded hover:text-yellow-200 transition" data-tab="contacto">Contacto</button></li>
-    </ul>
+    <!-- Header Simple -->
+    <header>
+        <nav>
+            <a href="#" class="logo">⚖️ Yasi <span class="logo-accent">K'ari</span></a>
+            <ul class="nav-links">
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Mobile menu button -->
-    <div class="md:hidden flex items-center">
-      <button id="mobileToggle" class="mobile-menu-btn focus-outline p-2 rounded-md" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
-        <i class="fas fa-bars text-xl"></i>
-      </button>
-    </div>
-  </div>
+    <!-- Hero Compacto -->
+    <section class="hero">
+        <h1 class="hero-title">Servicios Legales en Santa Cruz</h1>
+        <p class="hero-subtitle">Especialistas en 7 áreas del derecho • Contacto directo por WhatsApp</p>
+        <p class="hero-contact"><i class="fab fa-whatsapp"></i> +591 67358769 • Filial de GRUPO ZÉNIT S.A.</p>
+    </section>
 
-  <!-- Mobile menu items (collapsible) -->
-  <div id="mobileMenu" class="mobile-menu-items bg-blue-600 md:hidden px-4 pb-4">
-    <ul class="space-y-2">
-      <li><button class="nav-link w-full text-left block text-white py-2 px-3 rounded hover:bg-blue-700" data-tab="inicio">Inicio</button></li>
-      <li><button class="nav-link w-full text-left block text-white py-2 px-3 rounded hover:bg-blue-700" data-tab="quienes-somos">Quiénes Somos</button></li>
-      <li><button class="nav-link w-full text-left block text-white py-2 px-3 rounded hover:bg-blue-700" data-tab="servicios">Servicios</button></li>
-      <li><button class="nav-link w-full text-left block text-white py-2 px-3 rounded hover:bg-blue-700" data-tab="tarifas">Tarifas</button></li>
-      <li><button class="nav-link w-full text-left block text-white py-2 px-3 rounded hover:bg-blue-700" data-tab="contacto">Contacto</button></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- Contenedor principal de secciones -->
-<main class="container mx-auto px-4 py-8">
-
-  <!-- Inicio -->
-  <section class="tab-content active animate-fadeIn" id="inicio">
-    <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white p-6 md:p-8 rounded-lg shadow-xl mb-6 md:mb-8">
-      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">Bienvenidos a Yasi K'ari SRL</h1>
-      <p class="text-base sm:text-lg max-w-3xl">Somos una firma legal dedicada a la prestación de servicios jurídicos integrales, con un enfoque en la ética, la profesionalidad y la búsqueda de resultados efectivos para nuestros clientes.</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8">
-      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
-        <button class="w-full text-left" data-tab="servicios">
-          <h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center"><i class="fas fa-balance-scale mr-2 text-blue-500"></i> Asesoría Profesional</h3>
-          <p class="text-sm md:text-base">Brindamos asesoría y representación legal en diversas áreas del derecho boliviano.</p>
-        </button>
-      </div>
-
-      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
-        <button class="w-full text-left" data-tab="tarifas">
-          <h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center"><i class="fas fa-handshake mr-2 text-yellow-500"></i> Soluciones Integrales</h3>
-          <p class="text-sm md:text-base">Nuestro objetivo es encontrar soluciones efectivas, minimizando conflictos y maximizando los beneficios para nuestros clientes.</p>
-        </button>
-      </div>
-
-      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
-        <button class="w-full text-left" data-tab="quienes-somos">
-          <h3 class="text-lg md:text-xl font-semibold mb-2 flex items-center"><i class="fas fa-gavel mr-2 text-pink-500"></i> Compromiso y Ética</h3>
-          <p class="text-sm md:text-base">Nos comprometemos con la defensa de tus derechos bajo los principios de ética, honestidad y total transparencia.</p>
-        </button>
-      </div>
-    </div>
-
-    <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
-      <h2 class="text-lg md:text-xl font-semibold text-blue-600 mb-2">Nuestro Compromiso</h2>
-      <p class="text-sm md:text-base">En Yasi K'ari SRL, nos comprometemos a brindar soluciones legales con profesionalismo, ética y responsabilidad social. Nuestra misión es defender los intereses de nuestros clientes, garantizando la aplicación de la justicia y el cumplimiento de la ley.</p>
-    </div>
-  </section>
-
-  <!-- Quiénes somos -->
-  <section class="tab-content animate-fadeIn" id="quienes-somos">
-    <h2 class="text-xl md:text-2xl font-bold mb-4 text-blue-700">Quiénes Somos</h2>
-
-    <div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-        <div class="flex justify-center md:justify-start">
-          <img alt="Logo de Yasi K'ari SRL" class="w-40 sm:w-48 md:w-56 h-auto rounded" src="Copia de logo oficial.jpg-43caa038-a08f-4d09-9703-cd75e50936d2"/>
-        </div>
-        <div class="md:col-span-2">
-          <h3 class="text-lg font-semibold text-blue-600 mb-2">Información de la Firma</h3>
-          <ul class="space-y-2 text-sm md:text-base">
-            <li><strong>Denominación:</strong> Yasi K'ari SRL</li>
-            <li><strong>Domicilio:</strong> Trinidad, Departamento del Beni, Bolivia</li>
-            <li><strong>Objeto Principal:</strong> Prestación de servicios legales integrales.</li>
-            <li><strong>Representante Legal:</strong> Gerson Isai Machua Oniava</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 md:p-8 rounded-lg shadow-xl">
-      <h3 class="text-xl md:text-2xl font-bold mb-2">Nuestra Visión</h3>
-      <p class="text-sm md:text-base">Ser líderes en la prestación de servicios legales de alta calidad en el departamento del Beni, contribuyendo al desarrollo de la justicia y la seguridad jurídica. Promovemos prácticas legales responsables y éticas que generen valor para nuestros clientes y la comunidad.</p>
-    </div>
-  </section>
-
-  <!-- Servicios -->
-  <section class="tab-content animate-fadeIn" id="servicios">
-    <h2 class="text-xl md:text-2xl font-bold mb-4 text-blue-700">Nuestros Servicios Legales</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-      <!-- Reuse cards; layout responsive via grid classes -->
-      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
-        <button class="w-full text-left service-link" data-tab="tarifas" data-tema="penal">
-          <h3 class="text-lg font-semibold mb-2"><i class="fas fa-gavel mr-2 text-blue-500"></i> Derecho Penal</h3>
-          <p class="text-sm">Asesoría y defensa en procesos penales.</p>
-        </button>
-      </div>
-      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
-        <button class="w-full text-left service-link" data-tab="tarifas" data-tema="civil">
-          <h3 class="text-lg font-semibold mb-2"><i class="fas fa-balance-scale mr-2"></i> Derecho Civil</h3>
-          <p class="text-sm">Representación en litigios civiles y contratos.</p>
-        </button>
-      </div>
-      <div class="service-card bg-white p-4 md:p-6 rounded-lg shadow-md">
-        <button class="w-full text-left service-link" data-tab="tarifas" data-tema="familiar">
-          <h3 class="text-lg font-semibold mb-2"><i class="fas fa-child mr-2"></i> Derecho Familiar</h3>
-          <p class="text-sm">Asistencia en casos de divorcio, adopciones y más.</p>
-        </button>
-      </div>
-
-      <!-- more cards... keep layout responsive -->
-    </div>
-  </section>
-
-  <!-- Tarifas (sección larga, unchanged layout) -->
-  <section class="tab-content animate-fadeIn" id="tarifas">
-    <h2 class="text-xl md:text-2xl font-bold mb-4 text-blue-700">Tarifas Profesionales</h2>
-    <!-- Tarifas content omitted for brevity in commit message but preserved in file -->
-    <div class="bg-yellow-50 p-4 md:p-6 rounded-lg shadow-md border-l-4 border-yellow-400">
-      <p class="text-xs md:text-sm italic">* Precios basados en el Arancel Mínimo de Honorarios Profesionales de la Abogacía para el Departamento del Beni.</p>
-      <p class="text-xs md:text-sm"><strong>Nota:</strong> Las tarifas pueden variar según la complejidad del caso. Contáctenos para una cotización personalizada.</p>
-    </div>
-  </section>
-
-  <!-- Próximamente: añadidos con responsive grid -->
-  <section class="tab-content animate-fadeIn" id="proximamente">
-    <h2 class="text-xl md:text-2xl font-bold mb-4 text-blue-700">Otros Rubros de Yasi K'ari SRL</h2>
-    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-      <h3 class="text-lg md:text-xl font-semibold mb-2 text-gray-800">¡Próximamente!</h3>
-      <p class="text-base text-gray-600">Estamos trabajando arduamente en el desarrollo de nuestras divisiones de Actividades Comerciales y Proyectos Especiales.</p>
-      <p class="text-base text-gray-600 mt-2">Visita nuestros sitios asociados abajo.</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
-      <!-- Links as responsive cards -->
-      <a href="https://z-nit-agro-industrias-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
-        <i class="fas fa-tractor text-green-500 text-2xl mt-1"></i>
-        <div>
-          <h4 class="font-semibold">Agro Industrias</h4>
-          <p class="text-sm text-gray-500">z-nit agro industrias</p>
-        </div>
-      </a>
-
-      <a href="https://grupo-z-nit-s-a-three.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
-        <i class="fas fa-building text-blue-500 text-2xl mt-1"></i>
-        <div>
-          <h4 class="font-semibold">Grupo ZENIT</h4>
-          <p class="text-sm text-gray-500">Grupo Z-nit</p>
-        </div>
-      </a>
-
-      <a href="https://z-nit-cargo-transport-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
-        <i class="fas fa-truck text-yellow-500 text-2xl mt-1"></i>
-        <div>
-          <h4 class="font-semibold">Cargo y Transporte</h4>
-          <p class="text-sm text-gray-500">Z-nit Cargo & Transport</p>
-        </div>
-      </a>
-
-      <a href="https://z-nit-financiera-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
-        <i class="fas fa-hand-holding-dollar text-green-700 text-2xl mt-1"></i>
-        <div>
-          <h4 class="font-semibold">Financiera</h4>
-          <p class="text-sm text-gray-500">Z-nit Financiera</p>
-        </div>
-      </a>
-
-      <a href="https://z-nit-hospitality-group-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
-        <i class="fas fa-concierge-bell text-pink-500 text-2xl mt-1"></i>
-        <div>
-          <h4 class="font-semibold">Hospitality Group</h4>
-          <p class="text-sm text-gray-500">Z-nit Hospitality</p>
-        </div>
-      </a>
-
-      <a href="https://z-nit-yasi-k-ari.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
-        <i class="fas fa-gem text-indigo-500 text-2xl mt-1"></i>
-        <div>
-          <h4 class="font-semibold">Yasi K'ari</h4>
-          <p class="text-sm text-gray-500">Sitio principal Yasi K'ari</p>
-        </div>
-      </a>
-
-      <a href="https://z-nit-pharma-s-a-xcfa.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
-        <i class="fas fa-prescription-bottle-alt text-red-500 text-2xl mt-1"></i>
-        <div>
-          <h4 class="font-semibold">Pharma</h4>
-          <p class="text-sm text-gray-500">Z-nit Pharma</p>
-        </div>
-      </a>
-
-      <a href="https://z-nit-software-solutions-s-a.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-lg shadow hover:shadow-lg flex items-start space-x-3">
-        <i class="fas fa-code text-gray-700 text-2xl mt-1"></i>
-        <div>
-          <h4 class="font-semibold">Software</h4>
-          <p class="text-sm text-gray-500">Z-nit Software Solutions</p>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- Contacto -->
-  <section class="tab-content animate-fadeIn" id="contacto">
-    <h2 class="text-xl md:text-2xl font-bold mb-4 text-blue-700">Información de Contacto</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4">
-          <h3 class="font-semibold text-blue-600 mb-2">Datos Generales</h3>
-          <ul class="space-y-2 text-sm">
-            <li><strong>Razón Social:</strong> Yasi K'ari SRL</li>
-            <li><strong>Tipo:</strong> Sociedad de Responsabilidad Limitada (SRL)</li>
-            <li><strong>Representante Legal:</strong> Gerson Isai Machua Oniava</li>
-          </ul>
+    <!-- SERVICIOS - PROTAGONISTA ABSOLUTO -->
+    <section id="servicios" class="servicios-section">
+        <div class="section-intro">
+            <h2 class="section-title">Servicios Legales Especializados</h2>
+            <p class="section-subtitle">Haz clic en "Consultar" para contactar directamente por WhatsApp</p>
         </div>
 
-        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4">
-          <h3 class="font-semibold text-blue-600 mb-2">Contacto Directo</h3>
-          <ul class="space-y-2 text-sm">
-            <li><strong>Teléfono:</strong> +591 67358769</li>
-            <li><strong>Email:</strong> <a class="text-blue-500 hover:underline" href="mailto:lexusyasi@gmail.com">lexusyasi@gmail.com</a></li>
-            <li><strong>Sitio Web:</strong> <a class="text-blue-500 hover:underline" href="https://sites.google.com/view/yasikari/p%C3%A1gina-principal" target="_blank" rel="noopener noreferrer">Visitar</a></li>
-          </ul>
-        </div>
-
-        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
-          <h3 class="font-semibold text-blue-600 mb-2">Redes Sociales</h3>
-          <div class="flex space-x-3">
-            <a class="flex items-center justify-center bg-green-500 text-white w-10 h-10 rounded-full" href="https://api.whatsapp.com/send?phone=59167358769" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-            <a class="flex items-center justify-center bg-blue-600 text-white w-10 h-10 rounded-full" href="https://www.facebook.com/profile.php?id=61571776760855&amp;mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-            <a class="flex items-center justify-center bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white w-10 h-10 rounded-full" href="https://www.instagram.com/lexusyasi/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md mb-4">
-          <h3 class="font-semibold text-blue-600 mb-2">Dirección</h3>
-          <div class="mb-4">
-            <h4 class="font-medium text-blue-700 mb-1 flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i> Ubicación 1</h4>
-            <div class="map-container">
-              <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=https://maps.app.goo.gl/1hCZ6PmkUJDPSQ4W9&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" aria-label="Mapa Ubicación 1"></iframe>
+        <div class="materias-grid">
+            <!-- DERECHO PENAL -->
+            <div class="materia-card">
+                <div class="materia-header">
+                    <div class="materia-title">
+                        <i class="fas fa-gavel"></i>
+                        Derecho Penal
+                    </div>
+                    <div class="materia-count">7 servicios disponibles</div>
+                </div>
+                <div class="materia-body">
+                    <div class="servicio-item" data-servicio="Etapa Preliminar (hasta conclusión)" data-materia="Penal">
+                        <div class="servicio-nombre">Etapa Preliminar</div>
+                        <div class="servicio-precio">Bs 4,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Etapa Preparatoria del Juicio" data-materia="Penal">
+                        <div class="servicio-nombre">Etapa Preparatoria</div>
+                        <div class="servicio-precio">Bs 5,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Juicio Oral y Público" data-materia="Penal">
+                        <div class="servicio-nombre">Juicio Oral</div>
+                        <div class="servicio-precio">Bs 2,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Apelación Restringida" data-materia="Penal">
+                        <div class="servicio-nombre">Apelación Restringida</div>
+                        <div class="servicio-precio">Bs 5,000</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Recurso de Casación" data-materia="Penal">
+                        <div class="servicio-nombre">Casación</div>
+                        <div class="servicio-precio">Bs 6,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Acción de Libertad" data-materia="Penal">
+                        <div class="servicio-nombre">Acción de Libertad</div>
+                        <div class="servicio-precio">Bs 3,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Procedimiento Abreviado" data-materia="Penal">
+                        <div class="servicio-nombre">Proc. Abreviado</div>
+                        <div class="servicio-precio">Bs 5,000</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <div>
-            <h4 class="font-medium text-blue-700 mb-1 flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i> Ubicación 2</h4>
-            <div class="map-container">
-              <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=https://maps.app.goo.gl/ddgNoHjVcCXBpFbA8&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" aria-label="Mapa Ubicación 2"></iframe>
+            <!-- DERECHO CIVIL -->
+            <div class="materia-card">
+                <div class="materia-header">
+                    <div class="materia-title">
+                        <i class="fas fa-file-contract"></i>
+                        Derecho Civil
+                    </div>
+                    <div class="materia-count">6 servicios disponibles</div>
+                </div>
+                <div class="materia-body">
+                    <div class="servicio-item" data-servicio="Resolución de Contrato" data-materia="Civil">
+                        <div class="servicio-nombre">Resolución de Contrato</div>
+                        <div class="servicio-precio">Bs 5,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Cumplimiento de Contrato" data-materia="Civil">
+                        <div class="servicio-nombre">Cumplimiento de Contrato</div>
+                        <div class="servicio-precio">Bs 5,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Reivindicación de Propiedad" data-materia="Civil">
+                        <div class="servicio-nombre">Reivindicación</div>
+                        <div class="servicio-precio">Bs 6,000</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Ejecución de Sentencia" data-materia="Civil">
+                        <div class="servicio-nombre">Ejecución de Sentencia</div>
+                        <div class="servicio-precio">Bs 6,800</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Proceso Ordinario Civil" data-materia="Civil">
+                        <div class="servicio-nombre">Proceso Ordinario</div>
+                        <div class="servicio-precio">Bs 5,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Casación Civil" data-materia="Civil">
+                        <div class="servicio-nombre">Casación</div>
+                        <div class="servicio-precio">Bs 7,200</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <!-- DERECHO FAMILIAR -->
+            <div class="materia-card">
+                <div class="materia-header">
+                    <div class="materia-title">
+                        <i class="fas fa-users"></i>
+                        Derecho Familiar
+                    </div>
+                    <div class="materia-count">7 servicios disponibles</div>
+                </div>
+                <div class="materia-body">
+                    <div class="servicio-item" data-servicio="Divorcio Mutuo Acuerdo" data-materia="Familiar">
+                        <div class="servicio-nombre">Divorcio Mutuo Acuerdo</div>
+                        <div class="servicio-precio">Bs 4,000</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Divorcio Contencioso" data-materia="Familiar">
+                        <div class="servicio-nombre">Divorcio Contencioso</div>
+                        <div class="servicio-precio">Bs 7,200</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Asistencia Familiar" data-materia="Familiar">
+                        <div class="servicio-nombre">Asistencia Familiar</div>
+                        <div class="servicio-precio">Bs 1,800</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Régimen de Visitas" data-materia="Familiar">
+                        <div class="servicio-nombre">Régimen de Visitas</div>
+                        <div class="servicio-precio">Bs 3,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Adopción" data-materia="Familiar">
+                        <div class="servicio-nombre">Adopción</div>
+                        <div class="servicio-precio">Bs 4,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="División de Bienes" data-materia="Familiar">
+                        <div class="servicio-nombre">División de Bienes</div>
+                        <div class="servicio-precio">Bs 4,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Filiación" data-materia="Familiar">
+                        <div class="servicio-nombre">Filiación</div>
+                        <div class="servicio-precio">Bs 8,300</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DERECHO LABORAL -->
+            <div class="materia-card">
+                <div class="materia-header">
+                    <div class="materia-title">
+                        <i class="fas fa-briefcase"></i>
+                        Derecho Laboral
+                    </div>
+                    <div class="materia-count">6 servicios disponibles</div>
+                </div>
+                <div class="materia-body">
+                    <div class="servicio-item" data-servicio="Beneficios Sociales" data-materia="Laboral">
+                        <div class="servicio-nombre">Beneficios Sociales</div>
+                        <div class="servicio-precio">Bs 4,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Despido Injustificado" data-materia="Laboral">
+                        <div class="servicio-nombre">Despido Injustificado</div>
+                        <div class="servicio-precio">Bs 5,000</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Accidente Laboral" data-materia="Laboral">
+                        <div class="servicio-nombre">Accidente Laboral</div>
+                        <div class="servicio-precio">Bs 6,000</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Juicio Coactivo Laboral" data-materia="Laboral">
+                        <div class="servicio-nombre">Juicio Coactivo</div>
+                        <div class="servicio-precio">Bs 4,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Desafuero Sindical" data-materia="Laboral">
+                        <div class="servicio-nombre">Desafuero Sindical</div>
+                        <div class="servicio-precio">Bs 5,000</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Arbitraje Laboral" data-materia="Laboral">
+                        <div class="servicio-nombre">Arbitraje Laboral</div>
+                        <div class="servicio-precio">Bs 4,800</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DERECHO CORPORATIVO -->
+            <div class="materia-card">
+                <div class="materia-header">
+                    <div class="materia-title">
+                        <i class="fas fa-building"></i>
+                        Derecho Corporativo
+                    </div>
+                    <div class="materia-count">6 servicios disponibles</div>
+                </div>
+                <div class="materia-body">
+                    <div class="servicio-item" data-servicio="Constitución S.A." data-materia="Corporativo">
+                        <div class="servicio-nombre">Constitución S.A.</div>
+                        <div class="servicio-precio">Bs 14,800</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Constitución SRL" data-materia="Corporativo">
+                        <div class="servicio-nombre">Constitución S.R.L.</div>
+                        <div class="servicio-precio">Bs 9,400</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Redacción de Estatutos" data-materia="Corporativo">
+                        <div class="servicio-nombre">Estatutos y Reglamentos</div>
+                        <div class="servicio-precio">Bs 5,600</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Registro de Marca" data-materia="Corporativo">
+                        <div class="servicio-nombre">Registro de Marca</div>
+                        <div class="servicio-precio">Bs 8,000</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Contratos Comerciales" data-materia="Corporativo">
+                        <div class="servicio-nombre">Contratos Comerciales</div>
+                        <div class="servicio-precio">Bs 3,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Due Diligence" data-materia="Corporativo">
+                        <div class="servicio-nombre">Due Diligence</div>
+                        <div class="servicio-precio">Bs 12,000</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DERECHO CONSTITUCIONAL -->
+            <div class="materia-card">
+                <div class="materia-header">
+                    <div class="materia-title">
+                        <i class="fas fa-scroll"></i>
+                        Derecho Constitucional
+                    </div>
+                    <div class="materia-count">5 servicios disponibles</div>
+                </div>
+                <div class="materia-body">
+                    <div class="servicio-item" data-servicio="Amparo Constitucional" data-materia="Constitucional">
+                        <div class="servicio-nombre">Amparo Constitucional</div>
+                        <div class="servicio-precio">Bs 5,800</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Acción de Libertad" data-materia="Constitucional">
+                        <div class="servicio-nombre">Acción de Libertad</div>
+                        <div class="servicio-precio">Bs 3,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Acción Popular" data-materia="Constitucional">
+                        <div class="servicio-nombre">Acción Popular</div>
+                        <div class="servicio-precio">Bs 6,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Inconstitucionalidad" data-materia="Constitucional">
+                        <div class="servicio-nombre">Inconstitucionalidad</div>
+                        <div class="servicio-precio">Bs 10,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Acción de Cumplimiento" data-materia="Constitucional">
+                        <div class="servicio-nombre">Acción de Cumplimiento</div>
+                        <div class="servicio-precio">Bs 5,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DERECHO ADMINISTRATIVO -->
+            <div class="materia-card">
+                <div class="materia-header">
+                    <div class="materia-title">
+                        <i class="fas fa-university"></i>
+                        Derecho Administrativo
+                    </div>
+                    <div class="materia-count">5 servicios disponibles</div>
+                </div>
+                <div class="materia-body">
+                    <div class="servicio-item" data-servicio="Procedimientos ante Entidades Públicas" data-materia="Administrativo">
+                        <div class="servicio-nombre">Procedimientos Públicos</div>
+                        <div class="servicio-precio">Bs 3,800</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Recursos Administrativos" data-materia="Administrativo">
+                        <div class="servicio-nombre">Recursos Administrativos</div>
+                        <div class="servicio-precio">Bs 2,200</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Contencioso Administrativo" data-materia="Administrativo">
+                        <div class="servicio-nombre">Contencioso Administrativo</div>
+                        <div class="servicio-precio">Bs 7,200</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Contratos Públicos" data-materia="Administrativo">
+                        <div class="servicio-nombre">Contratos Públicos</div>
+                        <div class="servicio-precio">Bs 4,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                    <div class="servicio-item" data-servicio="Responsabilidad del Estado" data-materia="Administrativo">
+                        <div class="servicio-nombre">Responsabilidad del Estado</div>
+                        <div class="servicio-precio">Bs 8,500</div>
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Consultar</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
-          <h3 class="font-semibold text-blue-600 mb-2">Horario de Atención</h3>
-          <ul class="space-y-1 text-sm">
-            <li class="flex justify-between"><span>Lunes a Viernes</span><span class="font-medium">8:00 AM - 12:00 PM</span></li>
-          </ul>
+        <div class="info-bar">
+            <p><strong><i class="fas fa-info-circle"></i> Precios referenciales basados en el Arancel Mínimo de Santa Cruz</strong></p>
+            <p>Contacte por WhatsApp para información detallada y cotización personalizada</p>
         </div>
-      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contacto-section">
+        <div class="contacto-content">
+            <h2 class="contacto-title">Contacto Directo</h2>
+            <div class="contacto-items">
+                <div class="contacto-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div><a href="https://api.whatsapp.com/send?phone=59167358769">+591 67358769</a></div>
+                </div>
+                <div class="contacto-item">
+                    <i class="fas fa-phone"></i>
+                    <div><a href="tel:+59167358769">+591 67358769</a></div>
+                </div>
+                <div class="contacto-item">
+                    <i class="fas fa-envelope"></i>
+                    <div><a href="mailto:gersonisaimachuaoniava@gmail.com">Email</a></div>
+                </div>
+                <div class="contacto-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>Santa Cruz, Bolivia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">Yasi K'ari</div>
+                    <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; line-height: 1.7;">
+                        Servicios legales especializados en Santa Cruz, Bolivia. Filial de GRUPO ZÉNIT S.A.
+                    </p>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">Áreas Legales</h4>
+                    <ul class="footer-links">
+                        <li><a href="#servicios">Penal</a></li>
+                        <li><a href="#servicios">Civil</a></li>
+                        <li><a href="#servicios">Familiar</a></li>
+                        <li><a href="#servicios">Laboral</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">Empresa</h4>
+                    <ul class="footer-links">
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">Grupo Zénit</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://grupo-z-nit-s-a-three.vercel.app/" target="_blank">Holding</a></li>
+                        <li><a href="https://z-nit-financiera-s-a.vercel.app/" target="_blank">Financiera</a></li>
+                        <li><a href="https://z-nit-software-solutions-s-a.vercel.app/" target="_blank">Software</a></li>
+                        <li><a href="https://z-nit-pharma-s-a-xcfa.vercel.app/" target="_blank">Pharma</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=61571776760855" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/yasikarilex/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=59167358769" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <p>&copy; <span id="year">2025</span> Yasi K'ari SRL | Filial de GRUPO ZÉNIT S.A.</p>
+                <a href="#" class="terminos-link" onclick="document.getElementById('terminos').classList.add('active'); return false;">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Términos (Oculto) -->
+    <div id="terminos" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="document.getElementById('terminos').classList.remove('active')">&times;</button>
+            <h3 class="modal-title">Términos y Condiciones del Servicio</h3>
+            
+            <p class="modal-text"><strong>1. Naturaleza del Servicio</strong></p>
+            <p class="modal-text">Yasi K'ari SRL es un servicio de consultoría legal que facilita el contacto entre clientes y abogados independientes certificados. NO ejercemos directamente la profesión de abogacía.</p>
+            
+            <p class="modal-text"><strong>2. Alcance del Servicio</strong></p>
+            <p class="modal-text">Nuestro servicio consiste en: (a) Consultoría y orientación legal inicial, (b) Conexión con abogados independientes certificados en el Registro Público de Abogados (RPA), (c) Gestión administrativa y coordinación de procesos, (d) Seguimiento y apoyo durante el servicio legal.</p>
+            
+            <p class="modal-text"><strong>3. Ejercicio Profesional</strong></p>
+            <p class="modal-text">El ejercicio profesional del derecho es realizado exclusivamente por los abogados independientes certificados con quienes conectamos a nuestros clientes. Estos profesionales son responsables directos de la prestación del servicio legal.</p>
+            
+            <p class="modal-text"><strong>4. Tarifas</strong></p>
+            <p class="modal-text">Las tarifas indicadas son referenciales, basadas en el Arancel Mínimo de Honorarios Profesionales de Santa Cruz, Bolivia. Las tarifas finales pueden variar según la complejidad del caso y serán acordadas directamente entre el cliente y el profesional asignado.</p>
+            
+            <p class="modal-text"><strong>5. Confidencialidad</strong></p>
+            <p class="modal-text">Toda la información proporcionada por el cliente es tratada con absoluta confidencialidad conforme a las normativas legales vigentes en Bolivia.</p>
+            
+            <p class="modal-text"><strong>6. Responsabilidad</strong></p>
+            <p class="modal-text">Yasi K'ari SRL no se responsabiliza por los resultados de los procesos legales, siendo esta responsabilidad del abogado independiente que presta directamente el servicio profesional.</p>
+            
+            <p class="modal-text" style="margin-top: 2rem; font-size: 0.85rem; font-style: italic;">
+                Al utilizar nuestros servicios, el cliente acepta estos términos y condiciones. Para más información, contacte directamente con nosotros.
+            </p>
+        </div>
     </div>
-  </section>
 
-</main>
-
-<!-- Scripts: comportamiento de pestañas y menú móvil -->
-<script>
-  // Tab navigation
-  function showTab(tabId, clickedBtn) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    const target = document.getElementById(tabId);
-    if (target) target.classList.add('active');
-
-    // update active class on nav links
-    document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-    if (clickedBtn) clickedBtn.classList.add('active');
-  }
-
-  document.querySelectorAll('.nav-link').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const tab = btn.dataset.tab;
-      showTab(tab, btn);
-
-      // close mobile menu after navigation (if open)
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (mobileMenu && mobileMenu.classList.contains('active')) {
-        mobileMenu.classList.remove('active');
-        document.getElementById('mobileToggle').setAttribute('aria-expanded', 'false');
-      }
-    });
-  });
-
-  // Mobile menu toggle
-  const mobileToggle = document.getElementById('mobileToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  if (mobileToggle && mobileMenu) {
-    mobileToggle.addEventListener('click', () => {
-      const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-      mobileToggle.setAttribute('aria-expanded', String(!expanded));
-      mobileMenu.classList.toggle('active');
-    });
-  }
-
-  // Make sure the first nav item is active on load
-  document.addEventListener('DOMContentLoaded', () => {
-    const firstNav = document.querySelector('.nav-link[data-tab="inicio"]');
-    if (firstNav) firstNav.classList.add('active');
-  });
-</script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Year
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // WhatsApp para cada servicio
+            document.querySelectorAll('.servicio-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (e.target.closest('.whatsapp-btn') || e.target.closest('.servicio-item')) {
+                        const servicio = this.getAttribute('data-servicio');
+                        const materia = this.getAttribute('data-materia');
+                        const mensaje = `Hola, necesito información sobre: *${servicio}* (${materia})`;
+                        const url = `https://api.whatsapp.com/send?phone=59167358769&text=${encodeURIComponent(mensaje)}`;
+                        window.open(url, '_blank');
+                    }
+                });
+            });
+            
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
